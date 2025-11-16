@@ -35,6 +35,27 @@ def get_tasks():
     return jsonify([t.to_dict() for t in tasks])
 
 
+@app.route('/api/tasks/<int:task_id>', methods=['PUT'])
+def update_task(task_id):
+    task = Task.query.get_or_404(task_id)
+    data = request.get_json() or {}
+    if 'title' in data:
+        task.title = data['title']
+    if 'due_date' in data:
+        task.due_date = data['due_date']
+    if 'category' in data:
+        task.category = data['category']
+    if 'is_completed' in data:
+        task.is_completed = bool(data['is_completed'])
+    db.session.commit()
+    return jsonify(task.to_dict())
+
+@app.route('/api/tasks/<int:task_id>', methods=['DELETE'])
+def delete_task(task_id):
+    task = Task.query.get_or_404(task_id)
+    db.session.delete(task)
+    db.session.commit()
+    return jsonify({'message': 'Task deleted'}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)
