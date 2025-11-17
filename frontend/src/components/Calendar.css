@@ -1,0 +1,4 @@
+.month-box { background: #fff; padding: 10px; border-radius: 12px; box-shadow: 0 6px 18px rgba(15,23,42,0.04); }
+.month-title { font-weight: 600; margin-bottom: 8px; }
+.calendar-day { background: #f9fafb; padding: 8px; border-radius: 8px; min-height: 62px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; border:1px solid #eee; }
+.calendar-wrapper { margin-bottom: 6px; }
